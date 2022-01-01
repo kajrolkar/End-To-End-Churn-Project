@@ -28,6 +28,8 @@ def predict_api():
     else:
         return render_template('index.html')
 
-
+if __name__=="__main__":
+    print("------**app started**---------")
+    app.run(debug=True)
 
 
