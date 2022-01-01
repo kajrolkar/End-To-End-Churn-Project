@@ -1,0 +1,111 @@
+karan@karan-Lenovo-ideapad-110-15IBR:~$ sudo docker ps -a
+CONTAINER ID   IMAGE         COMMAND    CREATED         STATUS                     PORTS     NAMES
+8edb914b32bc   hello-world   "/hello"   9 seconds ago   Exited (0) 5 seconds ago             angry_aryabhata
+417aeea80b70   hello-world   "/hello"   3 hours ago     Exited (0) 3 hours ago               strange_allen
+karan@karan-Lenovo-ideapad-110-15IBR:~$ sudo docker images
+REPOSITORY    TAG        IMAGE ID       CREATED        SIZE
+python        3.7-slim   d3c9ad326043   6 days ago     120MB
+hello-world   latest     feb5d9fea6a5   3 months ago   13.3kB
+karan@karan-Lenovo-ideapad-110-15IBR:~$ sudo docker ps
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+karan@karan-Lenovo-ideapad-110-15IBR:~$ docker run ubuntu
+docker: Got permission denied while trying to connect to the Docker daemon socket at unix:///var/run/docker.sock: Post "http://%2Fvar%2Frun%2Fdocker.sock/v1.24/containers/create": dial unix /var/run/docker.sock: connect: permission denied.
+See 'docker run --help'.
+karan@karan-Lenovo-ideapad-110-15IBR:~$ sudo docker run ubuntu
+Unable to find image 'ubuntu:latest' locally
+latest: Pulling from library/ubuntu
+7b1a6ab2e44d: Pull complete 
+Digest: sha256:626ffe58f6e7566e00254b638eb7e0f3b11d4da9675088f4781a50ae288f3322
+Status: Downloaded newer image for ubuntu:latest
+karan@karan-Lenovo-ideapad-110-15IBR:~$ sudo docker images
+REPOSITORY    TAG        IMAGE ID       CREATED        SIZE
+python        3.7-slim   d3c9ad326043   6 days ago     120MB
+ubuntu        latest     ba6acccedd29   2 months ago   72.8MB
+hello-world   latest     feb5d9fea6a5   3 months ago   13.3kB
+karan@karan-Lenovo-ideapad-110-15IBR:~$ docker run -it -d ubuntu
+docker: Got permission denied while trying to connect to the Docker daemon socket at unix:///var/run/docker.sock: Post "http://%2Fvar%2Frun%2Fdocker.sock/v1.24/containers/create": dial unix /var/run/docker.sock: connect: permission denied.
+See 'docker run --help'.
+karan@karan-Lenovo-ideapad-110-15IBR:~$ sudo docker run -it -d ubuntu
+e98f34791d9d159abeeb9e2c6e3eb1be53d2cae59b3407750fa05f1f4051fb01
+karan@karan-Lenovo-ideapad-110-15IBR:~$ sudo docker ps
+CONTAINER ID   IMAGE     COMMAND   CREATED          STATUS          PORTS     NAMES
+e98f34791d9d   ubuntu    "bash"    19 seconds ago   Up 16 seconds             wizardly_burnell
+karan@karan-Lenovo-ideapad-110-15IBR:~$ docker exec -it e98f34791d9d bash
+Got permission denied while trying to connect to the Docker daemon socket at unix:///var/run/docker.sock: Get "http://%2Fvar%2Frun%2Fdocker.sock/v1.24/containers/e98f34791d9d/json": dial unix /var/run/docker.sock: connect: permission denied
+karan@karan-Lenovo-ideapad-110-15IBR:~$ sudo docker exec -it e98f34791d9d bash
+root@e98f34791d9d:/# mkdir Demo
+root@e98f34791d9d:/# exit
+exit
+karan@karan-Lenovo-ideapad-110-15IBR:~$ docker ps -a
+Got permission denied while trying to connect to the Docker daemon socket at unix:///var/run/docker.sock: Get "http://%2Fvar%2Frun%2Fdocker.sock/v1.24/containers/json?all=1": dial unix /var/run/docker.sock: connect: permission denied
+karan@karan-Lenovo-ideapad-110-15IBR:~$ sudo docker ps -a
+CONTAINER ID   IMAGE         COMMAND    CREATED         STATUS                     PORTS     NAMES
+e98f34791d9d   ubuntu        "bash"     3 minutes ago   Up 3 minutes                         wizardly_burnell
+0dd09c3c0965   ubuntu        "bash"     6 minutes ago   Exited (0) 6 minutes ago             recursing_keller
+8edb914b32bc   hello-world   "/hello"   9 minutes ago   Exited (0) 9 minutes ago             angry_aryabhata
+417aeea80b70   hello-world   "/hello"   3 hours ago     Exited (0) 3 hours ago               strange_allen
+karan@karan-Lenovo-ideapad-110-15IBR:~$ sudo docker ps 
+CONTAINER ID   IMAGE     COMMAND   CREATED         STATUS         PORTS     NAMES
+e98f34791d9d   ubuntu    "bash"    3 minutes ago   Up 3 minutes             wizardly_burnell
+karan@karan-Lenovo-ideapad-110-15IBR:~$ docker commit e98f34791d9d karankajrolkar/modified-ubuntu
+Got permission denied while trying to connect to the Docker daemon socket at unix:///var/run/docker.sock: Post "http://%2Fvar%2Frun%2Fdocker.sock/v1.24/commit?author=&comment=&container=e98f34791d9d&repo=karankajrolkar%2Fmodified-ubuntu&tag=latest": dial unix /var/run/docker.sock: connect: permission denied
+karan@karan-Lenovo-ideapad-110-15IBR:~$ sudo docker commit e98f34791d9d karankajrolkar/modified-ubuntu
+sha256:5f073a08a630c1808ca4cdd962f43b12fe3b67ee1ccc61e8d2d60b245376749b
+karan@karan-Lenovo-ideapad-110-15IBR:~$ sudo docker ps
+CONTAINER ID   IMAGE     COMMAND   CREATED         STATUS         PORTS     NAMES
+e98f34791d9d   ubuntu    "bash"    5 minutes ago   Up 5 minutes             wizardly_burnell
+karan@karan-Lenovo-ideapad-110-15IBR:~$ sudo docker run -it -d karankajrolkar/modified-ubuntu
+1942e7341426c905cad6cb9d86a9d792f5bb3307b53a8895df8b893ebaa62995
+karan@karan-Lenovo-ideapad-110-15IBR:~$ sudo docker ps
+CONTAINER ID   IMAGE                            COMMAND   CREATED          STATUS          PORTS     NAMES
+1942e7341426   karankajrolkar/modified-ubuntu   "bash"    44 seconds ago   Up 42 seconds             magical_ride
+e98f34791d9d   ubuntu                           "bash"    8 minutes ago    Up 8 minutes              wizardly_burnell
+karan@karan-Lenovo-ideapad-110-15IBR:~$ sudo docker exec -it 1942e7341426 bash
+root@1942e7341426:/# ls
+Demo  bin  boot  dev  etc  home  lib  lib32  lib64  libx32  media  mnt  opt  proc  root  run  sbin  srv  sys  tmp  usr  var
+root@1942e7341426:/# exit      
+exit
+karan@karan-Lenovo-ideapad-110-15IBR:~$ sudo docker exec -it e98f34791d9d bash
+root@e98f34791d9d:/# ls
+Demo  bin  boot  dev  etc  home  lib  lib32  lib64  libx32  media  mnt  opt  proc  root  run  sbin  srv  sys  tmp  usr  var
+root@e98f34791d9d:/# exit
+exit
+karan@karan-Lenovo-ideapad-110-15IBR:~$ docker login --username=karankajrolkar
+Password: 
+Got permission denied while trying to connect to the Docker daemon socket at unix:///var/run/docker.sock: Post "http://%2Fvar%2Frun%2Fdocker.sock/v1.24/auth": dial unix /var/run/docker.sock: connect: permission denied
+karan@karan-Lenovo-ideapad-110-15IBR:~$ sudo docker login --username=karankajrolkar
+Password: 
+Error response from daemon: Get "https://registry-1.docker.io/v2/": unauthorized: incorrect username or password
+karan@karan-Lenovo-ideapad-110-15IBR:~$ sudo docker login --username=karankajrolkar
+Password: 
+WARNING! Your password will be stored unencrypted in /root/.docker/config.json.
+Configure a credential helper to remove this warning. See
+https://docs.docker.com/engine/reference/commandline/login/#credentials-store
+
+Login Succeeded
+karan@karan-Lenovo-ideapad-110-15IBR:~$ sudo docker push karankajrolkar/modified-ubuntu
+Using default tag: latest
+The push refers to repository [docker.io/karankajrolkar/modified-ubuntu]
+4df7411ca661: Pushed 
+9f54eef41275: Mounted from library/ubuntu 
+latest: digest: sha256:86cb1953c4b4201311f1d628535f2786dc08b0cb015153661d2ebff19a6a3e32 size: 736
+karan@karan-Lenovo-ideapad-110-15IBR:~$ sudo docker ps
+CONTAINER ID   IMAGE                            COMMAND   CREATED          STATUS          PORTS     NAMES
+1942e7341426   karankajrolkar/modified-ubuntu   "bash"    6 minutes ago    Up 6 minutes              magical_ride
+e98f34791d9d   ubuntu                           "bash"    13 minutes ago   Up 13 minutes             wizardly_burnell
+karan@karan-Lenovo-ideapad-110-15IBR:~$ sudo docker stop 1942e7341426
+1942e7341426
+karan@karan-Lenovo-ideapad-110-15IBR:~$ sudo docker stop e98f34791d9d
+e98f34791d9d
+karan@karan-Lenovo-ideapad-110-15IBR:~$ sudo docker ps
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+karan@karan-Lenovo-ideapad-110-15IBR:~$ sudo docker ps -a
+CONTAINER ID   IMAGE                            COMMAND    CREATED          STATUS                      PORTS     NAMES
+1942e7341426   karankajrolkar/modified-ubuntu   "bash"     6 minutes ago    Exited (0) 26 seconds ago             magical_ride
+e98f34791d9d   ubuntu                           "bash"     14 minutes ago   Exited (0) 9 seconds ago              wizardly_burnell
+0dd09c3c0965   ubuntu                           "bash"     17 minutes ago   Exited (0) 17 minutes ago             recursing_keller
+8edb914b32bc   hello-world                      "/hello"   21 minutes ago   Exited (0) 20 minutes ago             angry_aryabhata
+417aeea80b70   hello-world                      "/hello"   3 hours ago      Exited (0) 3 hours ago                strange_allen
+karan@karan-Lenovo-ideapad-110-15IBR:~$ 
+
+

@@ -1,0 +1,88 @@
+
+1) Images can exist without container, "where as a container needs to run an image to exist".
+2) Containers are dependent on images and use them to construct a run-time enviroment and run an application.
+3) Docker images are read-only templates used to build Containers.
+IV)Container are deployed instance created from those templates
+
+Image --> Container
+####################################################################
+conda activate base
+pip install virtualenv (in base enviroment)
+-------------------------
+virtualenv churn-env
+--------------------------
+conda deactivate
+
+source churn-env/bin/activate
+---------------------------
+install joblib ,flask ,gunicorn , sklearn , numpy
+-----------------------------
+pip freeze > requirement.txt
+-----------------------------
+#write gunicorn.sh
+#!/bin/sh
+gunicorn main:app -w 3 --threads 2 -b 0.0.0.0:8000
+----------------------------
+#write container
+FROM python:3.7.3-slim
+COPY requirement.txt /
+RUN pip3 install -r /requirement.txt
+COPY . /app
+WORKDIR /app
+RUN chmod +x gunicorn.sh
+ENTRYPOINT ["./gunicorn.sh"]
+------------------------
+docker build -t telecom .
+--------------------------------
+docker run -d -p 8000:8000 telecom
+-----------------------------------
+testing 
+curl http://localhost:8000/
+-----------------------------------
+save to your docerHub account 
+docker ps
+#opt
+(churn-env) karan@karan-Lenovo-ideapad-110-15IBR:~/Desktop/telecom-churn-project$ docker ps
+CONTAINER ID   IMAGE                    COMMAND           CREATED         STATUS         PORTS                                       NAMES
+23d0b5e3194b   karankajrolkar/telecom   "./gunicorn.sh"   6 seconds ago   Up 3 seconds   0.0.0.0:8000->8000/tcp, :::8000->8000/tcp   amazing_franklin
+----------------------------
+#Use id of actual telecom runned image 
+
+docker commit 706498796a41 karankajrolkar/telecom
+--------------------------
+Now you see your model 
+docker images
+#out
+REPOSITORY                       TAG          IMAGE ID       CREATED          SIZE
+karankajrolkar/telecom           latest       e0a1304bc119   11 minutes ago   909MB
+telecom                          latest       040410fee6ab   2 hours ago      909MB
+flask-app                        latest       d341788989ca   2 hours ago      131MB
+karankajrolkar/modified-ubuntu   latest       5f073a08a630   25 hours ago     72.8MB
+-----------------------------
+Run yours new images
+docker run -d -p 8000:8000 karankajrolkar/telecom
+------------------------------
+curl http://localhost:8000/
+
+---------------------------------
+#login 
+docker login --username=karankajrolkar
+---------------------------------
+#pushing to Hub
+docker push karankajrolkar/telecom
+
+#Output
+Using default tag: latest
+The push refers to repository [docker.io/karankajrolkar/telecom]
+60529f53104a: Pushed 
+61558346e64f: Pushed 
+f4f68efb9c6d: Pushing [======>                                            ]  49.13MB/396.8MB
+4542ae8614ba: Pushing [=====>                                             ]  37.29MB/368.5MB
+493501a0b26a: Pushed 
+8bc59dd7b32b: Mounted from library/python 
+de9ab7da6a52: Mounted from library/python 
+86cf19f333cc: Pushing [>                                                  ]  1.087MB/74.29MB
+4b8e4d51fbe2: Mounted from library/python 
+cf5b3c6798f7: Mounted from library/python 
+
+

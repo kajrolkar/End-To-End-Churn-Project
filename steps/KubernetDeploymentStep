@@ -1,0 +1,228 @@
+karan@karan-Lenovo-ideapad-110-15IBR:~$ minikube start
+😄  minikube v1.24.0 on Ubuntu 20.04
+✨  Automatically selected the docker driver
+👍  Starting control plane node minikube in cluster minikube
+🚜  Pulling base image ...
+🔥  Creating docker container (CPUs=2, Memory=2200MB) ...
+🐳  Preparing Kubernetes v1.22.3 on Docker 20.10.8 ...
+    ▪ Generating certificates and keys ...
+    ▪ Booting up control plane ...
+    ▪ Configuring RBAC rules ...
+🔎  Verifying Kubernetes components...
+    ▪ Using image gcr.io/k8s-minikube/storage-provisioner:v5
+🌟  Enabled addons: default-storageclass, storage-provisioner
+🏄  Done! kubectl is now configured to use "minikube" cluster and "default" namespace by default
+--------------------------------------------------------------
+karan@karan-Lenovo-ideapad-110-15IBR:~$ kubectl get pods
+No resources found in default namespace.
+-------------------------
+karan@karan-Lenovo-ideapad-110-15IBR:~$ kubectl get deployment
+No resources found in default namespace.
+-------------------------------
+karan@karan-Lenovo-ideapad-110-15IBR:~$ docker ps -a
+CONTAINER ID   IMAGE                                 COMMAND                  CREATED         STATUS         PORTS                                                                                                                                  NAMES
+3066a4ada107   gcr.io/k8s-minikube/kicbase:v0.0.28   "/usr/local/bin/entr…"   5 minutes ago   Up 4 minutes   127.0.0.1:49162->22/tcp, 127.0.0.1:49161->2376/tcp, 127.0.0.1:49160->5000/tcp, 127.0.0.1:49159->8443/tcp, 127.0.0.1:49158->32443/tcp   minikube
+-----------------------------------------------------
+karan@karan-Lenovo-ideapad-110-15IBR:~$ docker ps 
+CONTAINER ID   IMAGE                                 COMMAND                  CREATED         STATUS         PORTS                                                                                                                                  NAMES
+3066a4ada107   gcr.io/k8s-minikube/kicbase:v0.0.28   "/usr/local/bin/entr…"   5 minutes ago   Up 5 minutes   127.0.0.1:49162->22/tcp, 127.0.0.1:49161->2376/tcp, 127.0.0.1:49160->5000/tcp, 127.0.0.1:49159->8443/tcp, 127.0.0.1:49158->32443/tcp   minikube
+---------------------------------------------------------------------
+karan@karan-Lenovo-ideapad-110-15IBR:~$ docker images
+REPOSITORY                       TAG          IMAGE ID       CREATED        SIZE
+telecom                          latest       040410fee6ab   2 days ago     909MB
+flask-app                        latest       d341788989ca   2 days ago     131MB
+karankajrolkar/modified-ubuntu   latest       5f073a08a630   3 days ago     72.8MB
+python                           3.7-slim     d3c9ad326043   9 days ago     120MB
+gcr.io/k8s-minikube/kicbase      v0.0.28      e2a6c047bedd   3 months ago   1.08GB
+hello-world                      latest       feb5d9fea6a5   3 months ago   13.3kB
+python                           3.7.3-slim   338ae06dfca5   2 years ago    143MB
+
+============================================================
+link :***********************
+https://kubernetes.io/docs/tutorials/hello-minikube/
+https://medium.com/swlh/how-to-run-locally-built-docker-images-in-kubernetes-b28fbc32cc1d
+https://betterprogramming.pub/create-a-running-docker-container-with-gunicorn-and-flask-dcd98fddb8e0
+****************************************************************************************
+-------------------------------------------------
+karan@karan-Lenovo-ideapad-110-15IBR:~$ minikube docker-env
+export DOCKER_TLS_VERIFY="1"
+export DOCKER_HOST="tcp://192.168.49.2:2376"
+export DOCKER_CERT_PATH="/home/karan/.minikube/certs"
+export MINIKUBE_ACTIVE_DOCKERD="minikube"
+
+# To point your shell to minikube's docker-daemon, run:
+# eval $(minikube -p minikube docker-env)
+-----------------------------------------------
+karan@karan-Lenovo-ideapad-110-15IBR:~$ eval $(minikube -p minikube docker-env)
+------------------------------------------------
+karan@karan-Lenovo-ideapad-110-15IBR:~$ docker images
+REPOSITORY                                TAG       IMAGE ID       CREATED        SIZE
+k8s.gcr.io/kube-apiserver                 v1.22.3   53224b502ea4   2 months ago   128MB
+k8s.gcr.io/kube-controller-manager        v1.22.3   05c905cef780   2 months ago   122MB
+k8s.gcr.io/kube-scheduler                 v1.22.3   0aa9c7e31d30   2 months ago   52.7MB
+k8s.gcr.io/kube-proxy                     v1.22.3   6120bd723dce   2 months ago   104MB
+kubernetesui/dashboard                    v2.3.1    e1482a24335a   6 months ago   220MB
+k8s.gcr.io/etcd                           3.5.0-0   004811815584   6 months ago   295MB
+kubernetesui/metrics-scraper              v1.0.7    7801cfc6d5c0   6 months ago   34.4MB
+k8s.gcr.io/coredns/coredns                v1.8.4    8d147537fb7d   7 months ago   47.6MB
+gcr.io/k8s-minikube/storage-provisioner   v5        6e38f40d628d   9 months ago   31.5MB
+k8s.gcr.io/pause                          3.5       ed210e3e4a5b   9 months ago   683kB
+-------------------------------------------------------------
+karan@karan-Lenovo-ideapad-110-15IBR:~$ cd Desktop
+karan@karan-Lenovo-ideapad-110-15IBR:~/Desktop$ ls
+ credentials          docker-hello-flask.zip    'Emloyee Dtails'       'Research Paper'          telecom-churn-project
+ demonev              dockerPython               howToManageImage.txt   stepDocker.txt           telecom-churn-project.zip
+ docker-hello-flask   Docker_Python_Script.zip   kubernet               stepForRequirement.txt
+ -------------------------
+karan@karan-Lenovo-ideapad-110-15IBR:~/Desktop$ cd demonev
+------------------------------
+karan@karan-Lenovo-ideapad-110-15IBR:~/Desktop/demonev$ ls
+churn-env  data  Dockerfile  gunicorn.sh  main.py  models  pod.yaml  __pycache__  requirement.txt  templates
+---------------------
+karan@karan-Lenovo-ideapad-110-15IBR:~/Desktop/demonev$ docker build -t telecom-img .
+Sending build context to Docker daemon    401MB
+Step 1/7 : FROM python:3.7.3-slim
+Step 2/7 : COPY requirement.txt /
+ ---> f60559095755
+Step 3/7 : RUN pip3 install -r /requirement.txt
+
+Step 4/7 : COPY . /app
+ ---> 86059aa73e1e
+Step 5/7 : WORKDIR /app
+ ---> Running in e829053f597a
+Removing intermediate container e829053f597a
+ ---> a5375700ea13
+Step 6/7 : RUN chmod +x gunicorn.sh
+ ---> Running in ff904619754c
+Removing intermediate container ff904619754c
+ ---> fed2e47b0f6d
+Step 7/7 : ENTRYPOINT ["./gunicorn.sh"]
+ ---> Running in 2fdb209acc60
+Removing intermediate container 2fdb209acc60
+ ---> c1b2a6624821
+Successfully built c1b2a6624821
+Successfully tagged telecom-img:latest
+-------------------------------------
+karan@karan-Lenovo-ideapad-110-15IBR:~/Desktop/demonev$ kubectl create deployment churn-pod --image=telecom-img:latest
+deployment.apps/churn-pod created
+------------------------------
+karan@karan-Lenovo-ideapad-110-15IBR:~/Desktop/demonev$ kubectl get pod
+NAME                         READY   STATUS         RESTARTS   AGE
+churn-pod-5bb7c984ff-dw65m   0/1     ErrImagePull   0          23s
+------------------------------------
+karan@karan-Lenovo-ideapad-110-15IBR:~/Desktop/demonev$ kubectl get deployment
+NAME        READY   UP-TO-DATE   AVAILABLE   AGE
+churn-pod   0/1     1            0           65s
+--------------------------------------
+karan@karan-Lenovo-ideapad-110-15IBR:~/Desktop/demonev$ kubectl delete deployment churn-pod
+deployment.apps "churn-pod" deleted
+-----------------------------
+
+karan@karan-Lenovo-ideapad-110-15IBR:~/Desktop/demonev$ kubectl get pod
+No resources found in default namespace.
+-------------------------------
+karan@karan-Lenovo-ideapad-110-15IBR:~/Desktop/demonev$ kubectl get deployment
+No resources found in default namespace.
+-------------------------
+karan@karan-Lenovo-ideapad-110-15IBR:~/Desktop/demonev$ docker build -t telecom-img:v1 .
+Sending build context to Docker daemon    401MB
+Step 1/7 : FROM python:3.7.3-slim
+ ---> 338ae06dfca5
+Step 2/7 : COPY requirement.txt /
+ ---> Using cache
+ ---> f60559095755
+Step 3/7 : RUN pip3 install -r /requirement.txt
+ ---> Using cache
+ ---> 21df8e06e7e1
+Step 4/7 : COPY . /app
+ ---> Using cache
+ ---> 86059aa73e1e
+Step 5/7 : WORKDIR /app
+ ---> Using cache
+ ---> a5375700ea13
+Step 6/7 : RUN chmod +x gunicorn.sh
+ ---> Using cache
+ ---> fed2e47b0f6d
+Step 7/7 : ENTRYPOINT ["./gunicorn.sh"]
+ ---> Using cache
+ ---> c1b2a6624821
+Successfully built c1b2a6624821
+Successfully tagged telecom-img:v1
+karan@karan-Lenovo-ideapad-110-15IBR:~/Desktop/demonev$ kubectl create deployment churn-pod --image=telecom-img:v1
+deployment.apps/churn-pod created
+karan@karan-Lenovo-ideapad-110-15IBR:~/Desktop/demonev$ kubectl get pods
+NAME                         READY   STATUS    RESTARTS   AGE
+churn-pod-6b87675f59-lft4r   1/1     Running   0          8s
+karan@karan-Lenovo-ideapad-110-15IBR:~/Desktop/demonev$ kubectl get deployment
+NAME        READY   UP-TO-DATE   AVAILABLE   AGE
+churn-pod   1/1     1            1           21s
+karan@karan-Lenovo-ideapad-110-15IBR:~/Desktop/demonev$ kubectl expose deployment churn-pod --type=LoadBalancer --port=8000
+service/churn-pod exposed
+karan@karan-Lenovo-ideapad-110-15IBR:~/Desktop/demonev$ kubectl get deployment
+NAME        READY   UP-TO-DATE   AVAILABLE   AGE
+churn-pod   1/1     1            1           68s
+karan@karan-Lenovo-ideapad-110-15IBR:~/Desktop/demonev$ kubectl config view
+apiVersion: v1
+clusters:
+- cluster:
+    certificate-authority: /home/karan/.minikube/ca.crt
+    extensions:
+    - extension:
+        last-update: Fri, 31 Dec 2021 01:44:04 IST
+        provider: minikube.sigs.k8s.io
+        version: v1.24.0
+      name: cluster_info
+    server: https://192.168.49.2:8443
+  name: minikube
+contexts:
+- context:
+    cluster: minikube
+    extensions:
+    - extension:
+        last-update: Fri, 31 Dec 2021 01:44:04 IST
+        provider: minikube.sigs.k8s.io
+        version: v1.24.0
+      name: context_info
+    namespace: default
+    user: minikube
+  name: minikube
+current-context: minikube
+kind: Config
+preferences: {}
+users:
+- name: minikube
+  user:
+    client-certificate: /home/karan/.minikube/profiles/minikube/client.crt
+    client-key: /home/karan/.minikube/profiles/minikube/client.key
+karan@karan-Lenovo-ideapad-110-15IBR:~/Desktop/demonev$ kubectl get services
+NAME         TYPE           CLUSTER-IP      EXTERNAL-IP   PORT(S)          AGE
+churn-pod    LoadBalancer   10.105.136.15   <pending>     8000:31507/TCP   102s
+kubernetes   ClusterIP      10.96.0.1       <none>        443/TCP          35m
+karan@karan-Lenovo-ideapad-110-15IBR:~/Desktop/demonev$ minikube service churn-pod
+|-----------|-----------|-------------|---------------------------|
+| NAMESPACE |   NAME    | TARGET PORT |            URL            |
+|-----------|-----------|-------------|---------------------------|
+| default   | churn-pod |        8000 | http://192.168.49.2:31507 |
+|-----------|-----------|-------------|---------------------------|
+🎉  Opening service default/churn-pod in default browser...
+--------------------------------------------
+karan@karan-Lenovo-ideapad-110-15IBR:~/Desktop/demonev$ kubectl get deployment
+NAME        READY   UP-TO-DATE   AVAILABLE   AGE
+churn-pod   1/1     1            1           9m43s
+-------------------------------------
+karan@karan-Lenovo-ideapad-110-15IBR:~/Desktop/demonev$ kubectl delete deployment churn-pod
+deployment.apps "churn-pod" deleted
+---------------------------------
+karan@karan-Lenovo-ideapad-110-15IBR:~/Desktop/demonev$ kubectl get pods
+NAME                         READY   STATUS        RESTARTS   AGE
+churn-pod-6b87675f59-lft4r   1/1     Terminating   0          10m
+
+karan@karan-Lenovo-ideapad-110-15IBR:~/Desktop/demonev$ kubectl delete pod churn-pod-6b87675f59-lft4r
+Error from server (NotFound): pods "churn-pod-6b87675f59-lft4r" not found
+karan@karan-Lenovo-ideapad-110-15IBR:~/Desktop/demonev$ kubectl get pods
+No resources found in default namespace.
+------------------------------
+karan@karan-Lenovo-ideapad-110-15IBR:~/Desktop/demonev$ minikube stop
+
+
+

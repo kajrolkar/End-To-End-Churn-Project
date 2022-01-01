@@ -1,0 +1,49 @@
+Docker container -> Docker is like a container where the code is loaded so that be used on any platform without any dependency.
+Docke image -> It's read-only file that has multiple layers that help us to excute layers in docker container . we get a custom docker images
+----------------------------------
+From: A docker file starts with a from. It tells us about the requirement of a docker file.
+Run: It is used to instal dependencies.
+Copy: It copies files from local to the container.
+CMD: It is a command which is run when an image starts. The difference between run and cmd is that unlike run, cmd does not create layers for the images.
+Expose: It informs docker which port to use at runtime
+Push: It is used to share your images in the Docker hub registry.
+------------------------------------------
+
+# docker info
+
+
+karan@karan-Lenovo-ideapad-110-15IBR:~/Desktop/docker-hello-flask$ source my-first-env/bin/activate
+(my-first-env) karan@karan-Lenovo-ideapad-110-15IBR:~/Desktop/docker-hello-flask$ sudo docker build -t hello-docker:v3 .
+-----------------------------------
+sudo docker images
+---------------------------
+#load image from docker
+-----------------------------------------
+docker run -d -p 5000:5000 hello-docker:v2
+----------------------
+sudo docker ps
+-------------------------------------
+#stop container
+sudo docker stop bfd1aa18025a
+------------------------------
+#Status
+sudo docker ps -a
+====================
+#remove from status
+sudo docker rm bfd1aa18025a
+---------------------------------
+sudo docker ps -a
+----------------------
+sudo docker images
+----------------------
+#remove complete  image
+sudo docker rmi 8b3f70a4536b
+
+
+////////////////////////////////////////////////////////////////
+Q) What is Object in kubernet 
+Q) What is etcd - storemetadata
+@) who admimstrat kubenet : kubeadm
+@0 what is service [[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[
+
+

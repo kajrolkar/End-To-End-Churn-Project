@@ -1,0 +1,64 @@
+ource /home/karan/anaconda3/bin/activate
+conda activate base
+karan@karan-Lenovo-ideapad-110-15IBR:~/Desktop/docker-hello-flask$ source /home/karan/anaconda3/bin/activate
+(base) karan@karan-Lenovo-ideapad-110-15IBR:~/Desktop/docker-hello-flask$ conda activate base
+(base) karan@karan-Lenovo-ideapad-110-15IBR:~/Desktop/docker-hello-flask$ ls
+app.py  Dockerfile
+(base) karan@karan-Lenovo-ideapad-110-15IBR:~/Desktop/docker-hello-flask$ pip install virtualenv
+Collecting virtualenv
+  Downloading virtualenv-20.10.0-py2.py3-none-any.whl (5.6 MB)
+     |████████████████████████████████| 5.6 MB 924 kB/s 
+Collecting distlib<1,>=0.3.1
+  Downloading distlib-0.3.4-py2.py3-none-any.whl (461 kB)
+     |████████████████████████████████| 461 kB 866 kB/s 
+Collecting platformdirs<3,>=2
+  Downloading platformdirs-2.4.1-py3-none-any.whl (14 kB)
+Requirement already satisfied: six<2,>=1.9.0 in /home/karan/anaconda3/lib/python3.8/site-packages (from virtualenv) (1.15.0)
+Collecting filelock<4,>=3.2
+  Downloading filelock-3.4.2-py3-none-any.whl (9.9 kB)
+Collecting backports.entry-points-selectable>=1.0.4
+  Downloading backports.entry_points_selectable-1.1.1-py2.py3-none-any.whl (6.2 kB)
+Installing collected packages: platformdirs, filelock, distlib, backports.entry-points-selectable, virtualenv
+  Attempting uninstall: filelock
+    Found existing installation: filelock 3.0.12
+    Uninstalling filelock-3.0.12:
+      Successfully uninstalled filelock-3.0.12
+Successfully installed backports.entry-points-selectable-1.1.1 distlib-0.3.4 filelock-3.4.2 platformdirs-2.4.1 virtualenv-20.10.0
+WARNING: You are using pip version 21.2.4; however, version 21.3.1 is available.
+You should consider upgrading via the '/home/karan/anaconda3/bin/python -m pip install --upgrade pip' command.
+(base) karan@karan-Lenovo-ideapad-110-15IBR:~/Desktop/docker-hello-flask$ virtualenv --version
+virtualenv 20.10.0 from /home/karan/anaconda3/lib/python3.8/site-packages/virtualenv/__init__.py
+(base) karan@karan-Lenovo-ideapad-110-15IBR:~/Desktop/docker-hello-flask$ virtualenv my-first-env
+created virtual environment CPython3.8.8.final.0-64 in 5452ms
+  creator CPython3Posix(dest=/home/karan/Desktop/docker-hello-flask/my-first-env, clear=False, no_vcs_ignore=False, global=False)
+  seeder FromAppData(download=False, pip=bundle, setuptools=bundle, wheel=bundle, via=copy, app_data_dir=/home/karan/.local/share/virtualenv)
+    added seed packages: pip==21.3.1, setuptools==58.3.0, wheel==0.37.0
+  activators BashActivator,CShellActivator,FishActivator,NushellActivator,PowerShellActivator,PythonActivator
+  =============================================
+  
+(base) karan@karan-Lenovo-ideapad-110-15IBR:~/Desktop/docker-hello-flask$ virtualenv -p /usr/bin/python3 my-first-env
+created virtual environment CPython3.8.10.final.0-64 in 1901ms
+  creator CPython3Posix(dest=/home/karan/Desktop/docker-hello-flask/my-first-env, clear=False, no_vcs_ignore=False, global=False)
+  seeder FromAppData(download=False, pip=bundle, setuptools=bundle, wheel=bundle, via=copy, app_data_dir=/home/karan/.local/share/virtualenv)
+    added seed packages: pip==21.3.1, setuptools==58.3.0, wheel==0.37.0
+  activators BashActivator,CShellActivator,FishActivator,NushellActivator,PowerShellActivator,PythonActivator
+  ===================================================
+  
+(base) karan@karan-Lenovo-ideapad-110-15IBR:~/Desktop/docker-hello-flask$ source my-first-env/bin/activate
+(my-first-env) (base) karan@karan-Lenovo-ideapad-110-15IBR:~/Desktop/docker-hello-flask$ pip install numpy
+Collecting numpy
+  Downloading numpy-1.21.5-cp38-cp38-manylinux_2_12_x86_64.manylinux2010_x86_64.whl (15.7 MB)
+     |████████████████████████████████| 15.7 MB 1.2 MB/s            
+Installing collected packages: numpy
+Successfully installed numpy-1.21.5
+
+========================================================================
+pip freeze > require.txt
+
+
+-0--------------------
+(my-first-env) (base) karan@karan-Lenovo-ideapad-110-15IBR:~/Desktop/docker-hello-flask$ pip freeze > require.txt
+(my-first-env) (base) karan@karan-Lenovo-ideapad-110-15IBR:~/Desktop/docker-hello-flask$ ^C
+(my-first-env) (base) karan@karan-Lenovo-ideapad-110-15IBR:~/Desktop/docker-hello-flask$
+
+-------- 

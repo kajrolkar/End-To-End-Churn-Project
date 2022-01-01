@@ -1,0 +1,14 @@
+Username
+karan
+pass: karan
+
+sudo systemctl daemon-reload
+----------------------
+sudo systemctl start jenkins
+-------------------------
+sudo systemctl status jenkins
+---------------------
+sudo systemctl stop jenkins
+
+
+
