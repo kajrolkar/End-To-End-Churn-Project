@@ -10,5 +10,14 @@ sudo systemctl status jenkins
 ---------------------
 sudo systemctl stop jenkins
 
+-----------------------
+#connect user of docker to jenkin 
+sudo usermod -aG docker jenkins
+
+-------------------------
+use ngrok to create pubic ip address to sync any update done on github to jenkin
+
+ngrok http 80
+
 
 
