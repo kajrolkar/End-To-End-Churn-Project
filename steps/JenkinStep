@@ -19,5 +19,6 @@ use ngrok to create pubic ip address to sync any update done on github to jenkin
 
 ngrok http 80
 
-
+docker build deploy:v1 .
+docker run -d -p 8000:8000 deploy:v1
 
